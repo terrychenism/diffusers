@@ -192,7 +192,9 @@ class AttentionBlock(nn.Module):
         hidden_states = (hidden_states + residual) / self.rescale_output_factor
         return hidden_states
 
+from torch._dynamo import allow_in_graph
 
+@allow_in_graph
 class BasicTransformerBlock(nn.Module):
     r"""
     A basic Transformer block.

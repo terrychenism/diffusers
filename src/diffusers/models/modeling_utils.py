@@ -77,6 +77,7 @@ def get_parameter_device(parameter: torch.nn.Module):
 
 def get_parameter_dtype(parameter: torch.nn.Module):
     try:
+        return tuple(parameter.parameters())[0].dtype
         parameters_and_buffers = itertools.chain(parameter.parameters(), parameter.buffers())
         return next(parameters_and_buffers).dtype
     except StopIteration:
